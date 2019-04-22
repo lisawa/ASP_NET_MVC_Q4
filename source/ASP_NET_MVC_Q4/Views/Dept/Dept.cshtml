@@ -1,0 +1,53 @@
+﻿@model ASP_NET_MVC_Q4.Models.DeptViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dept</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+    <script src="~/Scripts/Dept.js"></script>
+    <link href="~/Content/dept.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="block">
+        <h2>jQuery - Ajax</h2>
+        <div>
+            @Html.DropDownList("dept", Model.DeptList, new { @onchange = "getSubDeptList(this.value)" })
+        </div>
+
+        <div>
+            <select id="subDept"></select>
+        </div>
+
+        <button onclick="SubmitDpet()">送出</button>
+        <div><span>結果:</span><span id="submitResult"></span></div>
+    </div>
+    <div class="block" id="app">
+        <h2>Vue - Ajax</h2>
+        <div>
+            @Html.DropDownList("deptVue", Model.DeptList, new Dictionary<string, object>()
+             { { "v-on:change", "change($event)" } })
+        </div>
+        <div>
+            <select v-model="selectSub">
+                <option v-for="option in options" v-bind:value="option">
+                    {{ option.Name }}
+                </option>
+            </select>
+        </div>
+        <button v-on:click="SubmitDpetVue">送出</button>
+        <div>結果:{{submitValue}}</div>
+    </div>
+
+</body>
+</html>
+
