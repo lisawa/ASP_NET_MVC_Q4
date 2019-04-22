@@ -1,3 +1,5 @@
+# 結果頁面位置: http://{host}/Dept/Dept
+
 # ASP_NET_MVC_Q4
 
 # UI 控制
