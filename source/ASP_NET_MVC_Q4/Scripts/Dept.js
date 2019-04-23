@@ -25,10 +25,15 @@ window.onload = function () {
         data: {
             options: [],
             submitValue: '',
-            selectSub: {}
+            selectSub: {},
+
+            allVueOpt: [],
+            selectDeptObj: {},
+            selectSubDept: {},
+            submitObjectValue: ''
         },
         methods: {
-            change: function($event) {
+            change: function ($event) {
                 var vm = this;
                 console.log($event.target.value);
                 $.ajax({
@@ -46,6 +51,9 @@ window.onload = function () {
             SubmitDpetVue: function () {
                 this.submitValue = $('#deptVue option:selected').text() + ' - ' + this.selectSub.Name;
                 console.log(this.selectSub);
+            },
+            SubmitDpetVueObject: function () {
+                this.submitObjectValue = this.selectDeptObj.Name + ' - ' + this.selectSubDept.Name;
             }
         },
         beforeMount() {
@@ -56,6 +64,20 @@ window.onload = function () {
                 success: function (res) {
                     vm.options = res;
                     vm.selectSub = res[0];
+
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+            
+            $.ajax({
+                url: '/Dept/GetAllDeptGroup',
+                type: 'GET',
+                success: function (res) {
+                    vm.allVueOpt = res;
+                    vm.selectDeptObj = res[0];
+                    vm.selectSubDept = res[0].SubDepartments[0];
                 },
                 error: function (res) {
                     console.log(res);

@@ -26,12 +26,19 @@ namespace ASP_NET_MVC_Q4.Controllers
                 Value = x.Id.ToString()
             }));
 
+            var m = new DeptRepository().GetAllDeptWithSubDept();
+
             return View(vm);
         }
 
         public ActionResult GetDropDown(int id = 0)
         {
             return Json(new SubDeptRepository().GetSubDeptByParentID(id), JsonRequestBehavior.AllowGet);
+        }
+        
+        public ActionResult GetAllDeptGroup ()
+        {
+            return Json(new DeptRepository().GetAllDeptWithSubDept(), JsonRequestBehavior.AllowGet);
         }
     }
 }

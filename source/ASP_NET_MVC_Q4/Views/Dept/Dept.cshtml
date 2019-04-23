@@ -31,21 +31,43 @@
         <button onclick="SubmitDpet()">送出</button>
         <div><span>結果:</span><span id="submitResult"></span></div>
     </div>
-    <div class="block" id="app">
-        <h2>Vue - Ajax</h2>
-        <div>
-            @Html.DropDownList("deptVue", Model.DeptList, new Dictionary<string, object>()
-             { { "v-on:change", "change($event)" } })
+    <div id="app">
+        <div class="block">
+            <h2>Vue - Ajax</h2>
+            <div>
+                @Html.DropDownList("deptVue", Model.DeptList, new Dictionary<string, object>()
+                 { { "v-on:change", "change($event)" } })
+            </div>
+            <div>
+                <select v-model="selectSub">
+                    <option v-for="option in options" v-bind:value="option">
+                        {{ option.Name }}
+                    </option>
+                </select>
+            </div>
+            <button v-on:click="SubmitDpetVue">送出</button>
+            <div>結果:{{submitValue}}</div>
         </div>
-        <div>
-            <select v-model="selectSub">
-                <option v-for="option in options" v-bind:value="option">
-                    {{ option.Name }}
-                </option>
-            </select>
+
+        <div class="block">
+            <h2>Vue - Ajax without Razor</h2>
+            <div>
+                <select v-model="selectDeptObj">
+                    <option v-for="vueOpt in allVueOpt" v-bind:value="vueOpt">
+                        {{ vueOpt.Name }}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <select v-model="selectSubDept">
+                    <option v-for="option in selectDeptObj.SubDepartments" v-bind:value="option">
+                        {{ option.Name }}
+                    </option>
+                </select>
+            </div>
+            <button v-on:click="SubmitDpetVueObject">送出</button>
+            <div>結果: {{ submitObjectValue }}</div>
         </div>
-        <button v-on:click="SubmitDpetVue">送出</button>
-        <div>結果:{{submitValue}}</div>
     </div>
 
 </body>
