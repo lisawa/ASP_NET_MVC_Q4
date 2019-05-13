@@ -17,6 +17,13 @@
     <script src="~/Scripts/Dept.js"></script>
     <link href="~/Content/dept.css" rel="stylesheet" type="text/css" />
 </head>
+<script>
+    $(function () {
+        $.getJSON('./Model/department.json', function (data) {
+            console.log(data);
+        })
+    });
+</script>
 <body>
     <div class="block">
         <h2>jQuery - Ajax</h2>
@@ -28,7 +35,7 @@
             <select id="subDept"></select>
         </div>
 
-        <button onclick="SubmitDpet()">送出</button>
+        <button onclick="submitDpet()">送出</button>
         <div><span>結果:</span><span id="submitResult"></span></div>
     </div>
     <div id="app">
@@ -45,7 +52,7 @@
                     </option>
                 </select>
             </div>
-            <button v-on:click="SubmitDpetVue">送出</button>
+            <button v-on:click="submitDpetVue">送出</button>
             <div>結果:{{submitValue}}</div>
         </div>
 
@@ -65,7 +72,7 @@
                     </option>
                 </select>
             </div>
-            <button v-on:click="SubmitDpetVueObject">送出</button>
+            <button v-on:click="submitDpetVueObject">送出</button>
             <div>結果: {{ submitObjectValue }}</div>
         </div>
     </div>

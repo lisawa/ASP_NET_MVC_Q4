@@ -14,7 +14,7 @@
     });
 }
 
-function SubmitDpet() {
+function submitDpet() {
     $('#submitResult').text($('#dept option:selected').text() + ' - ' + $('#subDept option:selected').text());
 }
 
@@ -48,11 +48,11 @@ window.onload = function () {
                     }
                 });
             },
-            SubmitDpetVue: function () {
+            submitDpetVue: function () {
                 this.submitValue = $('#deptVue option:selected').text() + ' - ' + this.selectSub.Name;
                 console.log(this.selectSub);
             },
-            SubmitDpetVueObject: function () {
+            submitDpetVueObject: function () {
                 this.submitObjectValue = this.selectDeptObj.Name + ' - ' + this.selectSubDept.Name;
             }
         },
